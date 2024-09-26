@@ -1,18 +1,46 @@
-allKey = {143: "akksee", 674: "phonelaundering", 718: "n0tb1@nkets3et1l3"}
+# x = 0
 
-def lockCheck():
-    whichClient = int(input("Input your id to begin: "))
-    if whichClient in allKey:
-        print(f"Welcome customer {whichClient}")
-    else:
-        print("Invalid id")
-        print("Please go to one of the desks to get an account")
+# lock = input("What is the password?: ").strip().capitalize()
+# password = "Trees"
 
-    passCode = input("Please enter your password: ")
-    if passCode == allKey[whichClient]:
-        print("Welcom to the bank of wiz")
-    else:
-        while True:
-            print("ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM")
+# if lock == password: 
+#	print("Hello")  
+# else: 
+# 	x = x + 1 
+	
+# while x > 0: 
+# 	print("Intruder!")
 
 
+# variables
+y = 0
+
+username1 = "Waterbottle"
+username2 = "Apples" 
+
+password1 = "Water"
+password2 = "Seeds" 
+
+# inputs
+usernameinput = input("What is the username?: ").strip().capitalize()
+
+# ifs
+if usernameinput == username1: 
+	passwordinput = input("What is the password?: ").strip().capitalize()
+	if passwordinput == password1: 
+		print("hello")
+	else: 
+		y > 0
+elif usernameinput == username2: 
+	passwordinput = input("What is the password?: ").strip().capitalize
+	if passwordinput == password2: 
+		print("hello")
+	else: 
+		y > 0
+else: 
+	print("Sorry, there is no username for that") 
+	
+
+# saftey mechanism
+while y > 0: 
+	print("Incorrect, You are an intruder")

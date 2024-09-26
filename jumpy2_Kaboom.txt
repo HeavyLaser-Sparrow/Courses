@@ -1,0 +1,101 @@
+import kaboom from "kaboom";
+
+const FLOOR_HEIGHT = 0; 
+const JUMP_FORCE = 1000; 
+const SPEED = 480;
+
+kaboom();
+
+// load assets
+loadSprite("bean", "sprites/bean.png");
+
+scene("game", () => {
+  gravity(2400); 
+
+  const player = add([
+    sprite("bean"),
+	  pos(80, 40),
+	  area(),
+    body()
+  ]);
+  
+  // platform
+  add([
+    rect(width(), FLOOR_HEIGHT),  
+    outline(4), 
+    pos(0, height()),
+    area(), 
+    solid(), 
+    color(127, 200, 255)
+  ]);
+
+  function jump() {
+    player.jump(JUMP_FORCE);
+  }
+
+  onKeyPress("space", jump);
+  onClick(jump);
+
+  function spawnTree() {
+    add([
+      rect(48, rand(32, 96)), 
+      area(), 
+      outline(4), 
+      pos(width(), height() - FLOOR_HEIGHT),
+      origin("botleft"), 
+      color(255, 180, 255), 
+      move(LEFT, SPEED), 
+      "tree",
+    ]);
+     
+    wait(rand(0.5, 1.5), spawnTree);
+    
+  }
+
+  spawnTree();
+
+  player.onCollide("tree", () => {
+    go("lose", score); 
+    burp();
+    addKaboom(player.pos);
+  });
+
+  let score = 0; 
+
+  const scoreLabel = add([
+    text(score), 
+    pos(24, 24)
+  ]);
+
+  onUpdate(() => {
+    score++; 
+    scoreLabel.test = score; 
+  });
+
+});
+
+scene("lose", (score) => {
+
+  add([
+    sprite("bean"), 
+    pos(width() / 2, height() / 2), 
+    scale(2), 
+    origin("center")
+  ]);
+
+  add([
+    text(score), 
+    pos(width() / 2, height() / 2), 
+    scale(2), 
+    origin("center")
+  ]);
+
+  onKeyPress("space", () => go("game")); 
+  onClick(() => go("game"));
+});
+
+go("game")
+
+
+
+
